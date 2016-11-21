@@ -8,9 +8,9 @@ window.onload=getExif;
 function getExif() {
   var img1 = document.getElementById("img1");
   EXIF.getData(img1, function() {
-    if(EXIF.getAllTags(this).length === 0){
-      var allData = document.getElementById("alldata");
-      allData.innerHTML = "EXIF情報は含まれていませんでした";
+    if(Object.keys(EXIF.getAllTags(this)).length === 0 && EXIF.getAllTags(this).constructor === Object){
+      document.getElementById("exifinfo").style.display = "none";
+      document.getElementById("test").innerHTML = "EXIF情報は見つかりませんでした"
       return;
     }else{
       var ImageDescription = EXIF.getTag(this,"ImageDescription");
